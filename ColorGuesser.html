@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="ColorGuesser.css">
+  <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <header class="header">
+        <a href="Home.html" class="logo"><span>Random</span></a>
+
+        <nav class="navbar">
+            <a href="ColorGuesser.html" class="Active">Color Guesser</a>
+            <a href="NumberGuesser.html">Number Guesser</a>
+            <a href="NumberCounter.html">Never Ending Counter</a>
+            <a href="Fish.html">Fish</a>
+        </nav>
+
+    </header>
+
+    
+  <h1>Color Guesser</h1>
+  
+  <div id="color-display"></div>
+
+        <div class="button-container">
+            <button id="button1"></button>
+            <button id="button2"></button>
+            <button id="button3"></button>
+            <button id="button4"></button>
+        </div>
+    
+    <div id="score">Score: 0</div>
+
+   
+  <script>
+
+    const colorDisplay = document.getElementById('color-display');
+    const buttons = document.querySelectorAll('button');
+    const scoreDisplay = document.getElementById('score');
+    let score = 0;
+
+    function generateRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function setNewColorGame() {
+      const correctColor = generateRandomColor();
+      colorDisplay.style.backgroundColor = correctColor;
+
+      const correctButton = Math.floor(Math.random() * 4);
+      buttons.forEach((button, index) => {
+        if (index === correctButton) {
+          button.textContent = correctColor;
+        } else {
+          button.textContent = generateRandomColor();
+        }
+      });
+
+      buttons.forEach(button => {
+        button.onclick = () => {
+          if (button.textContent === correctColor) {
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+            alert('Correct! Well done.');
+          } else {
+            if (score > 0) score--;
+            scoreDisplay.textContent = `Score: ${score}`;
+            alert('Wrong! Try again.');
+          }
+          setNewColorGame();
+        };
+      });
+    }
+
+    setNewColorGame();
+
+  </script>
+  
+
+  
+</body>
+</html>

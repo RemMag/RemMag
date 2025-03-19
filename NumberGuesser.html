@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="NumberGuesser.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <header class="header">
+        <a href="Home.html" class="logo"><span>Random</span></a>
+
+        <nav class="navbar">
+            <a href="ColorGuesser.html" class="Active">Color Guesser</a>
+            <a href="NumberGuesser.html">Number Guesser</a>
+            <a href="NumberCounter.html">Never Ending Counter</a>
+            <a href="Fish.html">Fish</a>
+        </nav>
+
+    </header>
+
+    <div>
+      <h1>Number Guessing Game</h1>
+      <p>Guess the number between 1 and 100</p>
+      <input type="number" id="guess" min="1" max="100" />
+      <button id="submit">Submit</button>
+      <p id="hint"></p>
+      <p id="attempts"></p>
+    </div>
+
+    <script>
+
+        let randomNum = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        const guess = document.getElementById("guess");
+        const submit = document.getElementById("submit");
+        const hint = document.getElementById("hint");
+        const attemptsText = document.getElementById("attempts");
+
+        submit.addEventListener("click", checkGuess);
+
+        function checkGuess() {
+            const userValue = Number(guess.value);
+                attempts++;
+
+        if (userValue === randomNum) {
+            hint.textContent = "Congratulations, you guessed it!";
+        } else if (userValue < randomNum) {
+            hint.textContent = "Too low! Try again.";
+        } else {
+            hint.textContent = "Too high! Try again.";
+    }
+
+        attemptsText.textContent = "Attempts: " + attempts;
+    } 
+
+    </script>
+
+  </body>
+</html>

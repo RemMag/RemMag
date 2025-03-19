@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="NumberCounter.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stars.js">
+
+</head>
+
+<body>
+            <main class="scene"></main>
+    <header class="header">
+        <a href="Home.html" class="logo"><span>Random</span></a>
+
+        <nav class="navbar">
+            <a href="ColorGuesser.html" class="Active">Color Guesser</a>
+            <a href="NumberGuesser.html">Number Guesser</a>
+            <a href="NumberCounter.html">Never Ending Counter</a>
+            <a href="Fish.html">Fish</a>
+        </nav>
+
+    </header>
+
+    <div id="output">
+
+    </div>
+
+    <script>
+        
+    function countTo(){
+        let from = 0;
+        let to = 9999;
+        let step = to > from ? 1 : -1;
+        let interval = 500;
+
+        if(from == to){
+            document.querySelector("#output").textContent = from;
+            return;
+        }
+
+        let counter = setInterval(function(){
+            from += step;
+            document.querySelector("#output").textContent = from;
+
+            if(from == to){
+                clearInterval(counter);
+            }
+        }, interval);
+    }
+    countTo();
+
+    </script>
+
+<script >
+
+    const scene = document.querySelector('.scene');
+    const CreateDiv = () =>{
+    for (let i = 0; i < 210; i++){
+        scene.innerHTML += "<div></div>";
+        }
+    }
+    CreateDiv();
+
+    const stars = document.querySelectorAll('div');
+    stars.forEach( star => {
+        let x = `${Math.random() * 200}vmax`;
+        let y = `${Math.random() * 100}vh`;
+        let z = `${Math.random() * 200 - 100}vmin`;
+        let rx = `${Math.random() * 360}deg`;
+        star.style.setProperty('--x', x);
+        star.style.setProperty('--y', y);
+        star.style.setProperty('--z', z);
+        star.style.setProperty('--rx', rx);
+        let delay = `${Math.random() * 1.5}s`;
+        star.style.animationDelay = delay;
+    })
+
+    </script>
+    
+</body>
+</html>
